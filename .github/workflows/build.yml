@@ -16,7 +16,6 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
-      # Настройка MSVC C++ компилятора и SDK
       - name: Setup MSVC Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
 
@@ -26,6 +25,9 @@ jobs:
           version: '5.15.2'
 
       - name: Build Project
+        env:
+          CXXFLAGS: "/permissive"
+          CFLAGS: "/permissive"
         run: cargo build --release
 
       - name: Upload Windows Executable
