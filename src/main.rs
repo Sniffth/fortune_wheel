@@ -124,5 +124,6 @@ fn main() {
 
     engine.load_data(include_str!("main.qml").into());
 
+    println!("QML успешно передан в QmlEngine, запускаем exec()...");
     engine.exec();
 }
