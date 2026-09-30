@@ -6,6 +6,7 @@ ApplicationWindow {
     width: 600
     height: 700
     title: "Поле чудес"
+    id: root
 
     property var sectorColors: ["#FF4D4D", "#4D79FF", "#FF00FF", "#FF8000", "#00FF00"]
     property var sectorNames: ["Результативный ход", "Музыкальная пауза", "Сектор Плюс", "Сектор Шанс", "Сектор Приз"]

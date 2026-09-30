@@ -1,4 +1,3 @@
-#![windows_subsystem = "windows"]
 use qmetaobject::*;
 use std::cell::RefCell;
 
