@@ -1,4 +1,4 @@
-name: Build Windows EXE
+name: Build Windows EXE (MinGW)
 
 on:
   push:
@@ -13,27 +13,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Rust
+      - name: Install Rust (gnu target)
         uses: dtolnay/rust-toolchain@stable
-
-      - name: Setup MSVC Developer Command Prompt
-        uses: ilammy/msvc-dev-cmd@v1
         with:
-          toolset: '14.29'
+          targets: x86_64-pc-windows-gnu
 
-      - name: Install Qt 6
+      - name: Install Qt 6 (MinGW)
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.5.2'
-          modules: 'qt5compat'
+          arch: 'win64_mingw'
 
       - name: Build Project
-        env:
-          _CL_: "/permissive /D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /D_SCL_SECURE_NO_WARNINGS"
-        run: cargo build --release
+        run: cargo build --release --target x86_64-pc-windows-gnu
 
       - name: Upload Windows Executable
         uses: actions/upload-artifact@v4
         with:
           name: FortuneWheel-Windows-EXE
-          path: target/release/*.exe
+          path: target/x86_64-pc-windows-gnu/release/*.exe
