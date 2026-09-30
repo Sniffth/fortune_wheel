@@ -19,15 +19,13 @@ jobs:
       - name: Setup MSVC Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Install Qt 5
+      - name: Install Qt 6
         uses: jurplel/install-qt-action@v3
         with:
-          version: '5.15.2'
+          version: '6.5.2'
+          modules: 'qt5compat'
 
       - name: Build Project
-        env:
-          CXXFLAGS: "/permissive"
-          CFLAGS: "/permissive"
         run: cargo build --release
 
       - name: Upload Windows Executable
