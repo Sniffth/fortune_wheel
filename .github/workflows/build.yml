@@ -18,6 +18,8 @@ jobs:
 
       - name: Setup MSVC Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1
+        with:
+          toolset: '14.29'
 
       - name: Install Qt 6
         uses: jurplel/install-qt-action@v3
@@ -27,8 +29,7 @@ jobs:
 
       - name: Build Project
         env:
-          CL: "/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /D_SCL_SECURE_NO_WARNINGS"
-          CXXFLAGS: "/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /D_SCL_SECURE_NO_WARNINGS"
+          _CL_: "/permissive /D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /D_SCL_SECURE_NO_WARNINGS"
         run: cargo build --release
 
       - name: Upload Windows Executable
