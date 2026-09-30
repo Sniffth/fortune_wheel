@@ -26,6 +26,9 @@ jobs:
           modules: 'qt5compat'
 
       - name: Build Project
+        env:
+          CL: "/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /D_SCL_SECURE_NO_WARNINGS"
+          CXXFLAGS: "/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS /D_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING /D_SCL_SECURE_NO_WARNINGS"
         run: cargo build --release
 
       - name: Upload Windows Executable
