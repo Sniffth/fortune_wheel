@@ -1,0 +1,2 @@
+[target.x86_64-pc-windows-gnu]
+image = "drobkop/cross-win64-qt5:latest"
