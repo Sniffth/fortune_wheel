@@ -1,17 +1,26 @@
 name: Build Windows EXE
 
-on: [push]
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Install Qt
+      # Настройка MSVC C++ компилятора и SDK
+      - name: Setup MSVC Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Qt 5
         uses: jurplel/install-qt-action@v3
         with:
           version: '5.15.2'
@@ -19,8 +28,8 @@ jobs:
       - name: Build Project
         run: cargo build --release
 
-      - name: Upload Executable
+      - name: Upload Windows Executable
         uses: actions/upload-artifact@v4
         with:
-          name: FortuneWheel-Windows
+          name: FortuneWheel-Windows-EXE
           path: target/release/*.exe
