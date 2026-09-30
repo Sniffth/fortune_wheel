@@ -27,8 +27,14 @@ jobs:
       - name: Build Project
         run: cargo build --release --target x86_64-pc-windows-gnu
 
-      - name: Upload Windows Executable
+      - name: Bundle Qt DLLs with windeployqt
+        shell: pwsh
+        run: |
+          $exePath = Get-ChildItem -Path target/x86_64-pc-windows-gnu/release/*.exe | Select-Object -First 1
+          windeployqt --no-compiler-runtime $exePath.FullName
+
+      - name: Upload Windows Executable & DLLs
         uses: actions/upload-artifact@v4
         with:
-          name: FortuneWheel-Windows-EXE
-          path: target/x86_64-pc-windows-gnu/release/*.exe
+          name: FortuneWheel-Windows-Full
+          path: target/x86_64-pc-windows-gnu/release/
