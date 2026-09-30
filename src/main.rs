@@ -1,3 +1,4 @@
+#![windows_subsystem = "windows"]
 use qmetaobject::*;
 use std::cell::RefCell;
 
@@ -122,6 +123,7 @@ fn main() {
     let wheel = QObjectBox::new(FortuneWheel::new());
     engine.set_object_property("rustWheel".into(), wheel.pinned());
 
-    engine.load_data(include_str!("../main.qml").into());
+    engine.load_data(include_str!("main.qml").into());
+
     engine.exec();
 }
