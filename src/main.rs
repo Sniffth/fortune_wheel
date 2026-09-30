@@ -7,8 +7,9 @@ pub struct SpinOutcome {
     pub display_text: String,
 }
 
-const QML_SRC: &str = r###"import QtQuick 2.15
-import QtQuick.Controls 2.15
+const QML_SRC: &str = r###"import QtQuick
+import QtQuick.Controls
+
 
 ApplicationWindow {
     visible: true
