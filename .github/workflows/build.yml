@@ -32,7 +32,7 @@ jobs:
         run: |
           $exePath = Get-ChildItem -Path target/x86_64-pc-windows-gnu/release/*.exe | Select-Object -First 1
           # Флаг --qmldir подтягивает все плагины Controls, WorkerScript и графики
-          windeployqt --no-compiler-runtime --qmldir src/ $exePath.FullName
+          windeployqt --qmldir src/ $exePath.FullName
 
       - name: Upload Windows Executable & DLLs
         uses: actions/upload-artifact@v4
