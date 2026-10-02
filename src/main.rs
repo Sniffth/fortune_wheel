@@ -18,6 +18,25 @@ ApplicationWindow {
     title: "Поле чудес"
     id: root
 
+    
+    Shortcut {
+        sequence: "F11"
+        onActivated: {
+            if (root.visibility === Window.FullScreen) {
+                root.visibility = Window.Windowed
+            } else {
+                root.visibility = Window.FullScreen
+            }
+        }
+    }
+
+    Shortcut {
+        sequence: "Esc"
+        onActivated: {
+            root.visibility = Window.Windowed
+        }
+    }
+
     property var sectorColors: ["#FF4D4D", "#4D79FF", "#FF00FF", "#FF8000", "#00FF00"]
     property var sectorNames: ["Результативный ход", "Музыкальная пауза", "Сектор Плюс", "Сектор Шанс", "Сектор Приз"]
     property string displayText: "Крутите колесо!"
